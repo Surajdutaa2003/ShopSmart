@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "dist/temp-module/browser"
+  publish = "dist/temp-module/browser/browser"
 
 [build.environment]
   ANGULAR_VERSION = "20.0.0"
