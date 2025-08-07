@@ -1,0 +1,137 @@
+.user-menu-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  /* border-radius: 2px; */
+  min-width: auto;
+  line-height: 1;
+  height: auto;
+  background: transparent;
+  color: var(--color-white);
+}
+
+.user-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 1px solid var(--color-white);
+}
+
+.user-menu-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 6px;
+}
+
+.hello-text {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #ccc;
+}
+
+.account-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-white);
+}
+
+::ng-deep .mat-mdc-menu-panel.user-dropdown {
+  min-width: 250px !important;
+  max-width: 300px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background-color: var(--color-white) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--color-gray-200) !important;
+}
+
+.menu-header {
+  background-color: var(--color-gray-300);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.user-name {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
+  color: var(--color-gray-900);
+}
+
+.user-email {
+  display: block;
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+  margin-top: 4px;
+}
+
+.menu-content {
+  padding: 0;
+}
+
+.menu-section {
+  padding: 0;
+}
+
+.menu-section h4 {
+  font-size: var(--font-size-sm);
+  margin: 12px 16px 8px;
+  color: var(--color-gray-700);
+}
+
+::ng-deep .mat-mdc-menu-content {
+  padding: 0 !important;
+  background-color: var(--color-white) !important;
+}
+
+::ng-deep .mat-mdc-menu-item {
+  color: var(--color-gray-900) !important;
+}
+
+::ng-deep .mat-mdc-menu-item:hover {
+  background-color: var(--color-gray-100) !important;
+}
+
+::ng-deep .mat-mdc-menu-item .mat-icon {
+  color: var(--color-gray-600) !important;
+  margin-right: 8px !important;
+}
+
+::ng-deep .mat-divider {
+  border-top-color: var(--color-gray-200) !important;
+  margin: 0 !important;
+}
+
+/* Order button styling - Amazon accent color */
+::ng-deep .mat-mdc-menu-item button:hover .mat-icon {
+  color: var(--color-accent) !important;
+}
+
+/* Signout button styling */
+.logout-item {
+  color: var(--color-gray-900) !important;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+::ng-deep .logout-item .mat-icon {
+  color: var(--color-gray-600) !important;
+}
+
+::ng-deep .logout-item:hover {
+  background-color: var(--color-gray-100) !important;
+}
+
+::ng-deep .logout-item:hover .mat-icon {
+  color: #d32f2f !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .user-menu-label {
+    display: none;
+  }
+}

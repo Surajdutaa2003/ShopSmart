@@ -1,0 +1,9 @@
+<div class="featured-products-section">
+  <h2>Featured Products</h2>
+  <div *ngIf="loading" class="featured-loading">Loading...</div>
+  <div class="featured-carousel">
+    <div class="carousel-track">
+      <app-card *ngFor="let product of featuredProducts" [product]="product"></app-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+.footer-container {
+  background-color: #061c37; /* Matches header background */
+  color: #ccc;
+  padding: 30px 40px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-brand h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: #999;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.footer-links a {
+  color: #f9c200;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Reuse the ShopSmart header styling */
+.highlight {
+  color: #f9c200; /* Same as header S */
+  font-weight: bold;
+}
+
+.light {
+  color: #ffffff;
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-copy {
+    margin: 10px 0;
+  }
+}

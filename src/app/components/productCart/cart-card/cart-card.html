@@ -1,0 +1,32 @@
+<div class="main-item-container">
+     <a [routerLink]="['/home/products', item.product.id]">
+    <div class="item-image">
+        <img [src]="item.product.thumbnail" [alt]="item.product.title">
+    </div>
+    </a>
+
+    <div class="item-details">
+        <a [routerLink]="['/home/products', item.product.id]">
+            <div class="item-title">{{ item.product.title }}</div>
+        </a>
+        <div class="item-stock in-stock">In Stock</div>
+        <div class="item-brand" *ngIf="item.product.brand">{{ item.product.brand }}</div>
+
+        <div class="item-actions">
+            <div class="quantity-selector">
+                <select [(ngModel)]="item.quantity" (ngModelChange)="onQuantityChange.emit($event)">
+                    <option *ngFor="let num of getQuantityOptions()" [value]="num">{{ num }}</option>
+                </select>
+            </div>
+
+            <div class="action-divider">|</div>
+
+            <button class="text-button remove-btn" (click)="removeFromCart.emit(item)">Delete</button>
+        </div>
+    </div>
+    
+    <!-- Add the price element here -->
+    <div class="item-price">
+        ${{ item.product.price | number:'1.2-2' }}
+    </div>
+</div>

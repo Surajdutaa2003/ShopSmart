@@ -1,0 +1,71 @@
+@if (isLoading) {
+  <div class="checkout-loader-overlay">
+    <div class="checkout-loader">
+      <div class="spinner"></div>
+      <p>Placing your order...</p>
+    </div>
+  </div>
+}
+
+<div class="cart-page">
+  <div class="cart-container">
+    <div class="cart-header">
+      <h1>Shopping Cart</h1>
+      @if (cartItems.length > 0) {
+        <button class="text-button" (click)="clearCart()">Clear cart</button>
+      }
+    </div>
+
+    <div class="cart-content">
+      <div class="cart-items">
+        @if (cartItems.length === 0) {
+          <div class="empty-cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <h2>Your ShopSmart Cart is empty</h2>
+            <p>Your shopping cart is waiting. Give it purpose – fill it with groceries, clothing, household
+              supplies, electronics, and more.</p>
+            <button class="primary-button" (click)="continueShopping()">Continue shopping</button>
+          </div>
+        }
+
+        @if (cartItems.length > 0) {
+          <div class="cart-items-list">
+            <div class="price-column-header">PRICE</div>
+
+            @for (item of cartItems; track item) {
+              <div>
+                <app-cart-card [item]="item" (onQuantityChange)="onQuantityChange($event, item)"
+                  (removeFromCart)="removeFromCart($event)" />
+              </div>
+            }
+
+            <div class="subtotal-mobile">
+              <span>Subtotal ({{ itemCount }} items):</span>
+              <span class="price">${{ subtotal | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (cartItems.length > 0) {
+        <div class="checkout-sidebar">
+          <div class="checkout-card">
+            <div class="subtotal">
+              <span>Subtotal ({{ itemCount }} items):</span>
+              <span class="price">${{ subtotal | number:'1.2-2' }}</span>
+            </div>
+            <button class="primary-button checkout-btn" (click)="continueToCheckout()">
+              Proceed to checkout
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <app-featured-products [cartItems]="cartItems"></app-featured-products>
+</div>

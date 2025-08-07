@@ -1,0 +1,53 @@
+.payment-method {
+  padding: 1.25rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-method::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+
+.payment-method.selected {
+  border: 2px solid var(--color-accent);
+  background-color: rgba(var(--color-accent-rgb), 0.05);
+}
+
+.payment-method.selected::before {
+  width: 100%;
+}
+
+.payment-method span {
+  font-weight: var(--font-weight-medium);
+  transition: transform 0.2s;
+  display: block;
+}
+
+.payment-method:hover span {
+  transform: translateY(-2px);
+}
+
+.payment-method:hover::before {
+  width: 100%;
+}
+
+
+.payment-method:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}

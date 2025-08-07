@@ -1,0 +1,63 @@
+.address-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.address-item {
+  padding: 1.25rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.address-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background-color: var(--color-accent);
+  transition: height 0.3s ease;
+}
+
+.address-item:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.address-item:hover::before {
+  height: 100%;
+}
+
+.address-item.selected {
+  border: 2px solid var(--color-accent);
+  background-color: rgba(var(--color-accent-rgb), 0.05);
+  box-shadow: 0 4px 8px rgba(var(--color-accent-rgb), 0.1);
+}
+
+.address-item.selected::before {
+  height: 100%;
+}
+
+.address-content {
+  position: relative;
+}
+
+.address-content p {
+  margin: 0.35rem 0;
+  color: var(--color-gray-700);
+  transition: transform 0.2s;
+  transform: translateX(0);
+}
+
+.address-item:hover .address-content p {
+  transform: translateX(4px);
+}

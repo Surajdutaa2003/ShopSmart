@@ -1,0 +1,20 @@
+.shopsmart-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.shopsmart-header span:nth-child(1) {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-accent);
+}
+.shopsmart-header span:last-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}

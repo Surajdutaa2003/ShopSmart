@@ -1,0 +1,190 @@
+/* Tags Styling */
+
+.tags strong {
+  color: #565959;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+.tags-title{
+  margin-right: 0.5rem;
+}
+
+.tags .tag {
+  display: inline-block;
+  background-color: #f0f2f2;
+  color: #0F1111;
+  padding: 4px 8px;
+  margin: 2px 4px 2px 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  border: 1px solid #d5d9d9;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-tabs-section {
+    padding: 16px 12px;
+  }
+  
+  .tab-button {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+  
+  .tab-panel {
+    padding: 20px 16px;
+  }
+  
+  .tab-panel h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  
+  .details-content p {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 0;
+  }
+  
+  .details-content strong {
+    font-size: 13px;
+  }
+  
+  .tags {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .tags strong {
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-tabs-section {
+    padding: 12px 8px;
+  }
+  
+  .tab-container {
+    border-radius: 6px;
+  }
+  
+  .tab-button {
+    padding: 12px 16px;
+    font-size: 13px;
+    min-width: 120px;
+  }
+  
+  .tab-panel {
+    padding: 16px 12px;
+  }
+  
+  .tab-panel h3 {
+    font-size: 16px;
+  }
+  
+  .tab-panel p {
+    font-size: 13px;
+  }
+  
+  .details-content p {
+    padding: 10px 0;
+  }
+  
+  .tags .tag {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+/* Loading State */
+.tab-panel.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.tab-panel.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007185;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Print Styles */
+@media print {
+  .product-tabs-section {
+    background: white;
+    color: black;
+  }
+  
+  .tab-header {
+    display: none;
+  }
+  
+  .tab-panel {
+    padding: 0;
+    animation: none;
+  }
+  
+  .tab-panel h3 {
+    margin-top: 20px;
+  }
+  
+  .tab-panel:first-child h3 {
+    margin-top: 0;
+  }
+  
+  .details-content p {
+    grid-template-columns: 150px 1fr;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tags .tag {
+    background: white;
+    border: 1px solid #000;
+  }
+}
+
+/* Accessibility Improvements */
+.tab-button[aria-selected="true"] {
+  color: #007185;
+  background-color: #ffffff;
+  border-bottom-color: #007185;
+}
+
+.tab-panel[aria-hidden="true"] {
+  display: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tab-button {
+    border: 1px solid;
+  }
+  
+  .tab-button.active {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .tags .tag {
+    border: 2px solid;
+  }
+}

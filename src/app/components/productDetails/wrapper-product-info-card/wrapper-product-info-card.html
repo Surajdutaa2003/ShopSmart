@@ -1,0 +1,29 @@
+<div class="accordion-section">
+  <div class="accordion-item">
+    <button class="accordion-header" (click)="toggleDetails()" [class.active]="isDetailsOpen">
+      Product Details
+      <span class="accordion-icon">{{ isDetailsOpen ? '−' : '+' }}</span>
+    </button>
+    <div class="accordion-content" [class.open]="isDetailsOpen">
+      <ng-content select="[product-details]"></ng-content>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header" (click)="toggleShipping()" [class.active]="isShippingOpen">
+      Shipping Information
+      <span class="accordion-icon">{{ isShippingOpen ? '−' : '+' }}</span>
+    </button>
+    <div class="accordion-content" [class.open]="isShippingOpen">
+      <ng-content select="[shipping-info]"></ng-content>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header" (click)="toggleReturnPolicy()" [class.active]="isReturnPolicyOpen">
+      Return Policy
+      <span class="accordion-icon">{{ isReturnPolicyOpen ? '−' : '+' }}</span>
+    </button>
+    <div class="accordion-content" [class.open]="isReturnPolicyOpen">
+      <ng-content select="[return-policy]"></ng-content>
+    </div>
+  </div>
+</div>

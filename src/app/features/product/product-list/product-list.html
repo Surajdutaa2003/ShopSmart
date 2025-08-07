@@ -1,0 +1,46 @@
+<app-product-filter @slideUp
+  [products]="products()"
+  [categories]="categories()"
+  (filterChange)="onFilterChange($event)"
+></app-product-filter>
+
+<app-product-placeholder @slideUp
+  [isLoading]="isLoading()"
+  [hasNoProducts]="filteredProducts().length === 0"
+></app-product-placeholder>
+
+
+@if (!isLoading() && filteredProducts().length > 0) {
+  <div class="product-list">
+    @for (product of filteredProducts(); track trackByProductId) {
+      <app-card @slideUp [product]="product"></app-card>
+    }
+  </div>
+}
+
+
+@if (!isLoading() && filteredProducts().length > 0) {
+  <div class="pagination">
+    <button 
+      (click)="previousPage()" 
+      [disabled]="currentPage() === 1"
+      class="pagination-btn"
+      aria-label="Previous page"
+    >
+      Previous
+    </button>
+    
+    <span class="pagination-info">
+      Page {{ currentPage() }} of {{ totalPages() }}
+    </span>
+    
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage() >= totalPages()"
+      class="pagination-btn"
+      aria-label="Next page"
+    >
+      Next  
+    </button>
+  </div>
+}

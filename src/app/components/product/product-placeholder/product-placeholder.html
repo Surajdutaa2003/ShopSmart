@@ -1,0 +1,27 @@
+<div class="placeholder-container">
+  <div *ngIf="isLoading" class="skeleton-grid">
+    <div *ngFor="let _ of skeletonItems" class="skeleton-card">
+      <div class="skeleton-thumbnail shimmer"></div>
+      <div class="skeleton-content">
+        <div class="skeleton-title shimmer"></div>
+        <div class="skeleton-price shimmer"></div>
+        <div class="skeleton-rating shimmer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="hasNoProducts && !isLoading" class="amazon-no-products">
+    <img
+      src="https://bepharco.com/no-products-found.png"
+      alt="No Products"
+      class="amazon-placeholder-img"
+    />
+    <button
+      type="button"
+      class="amazon-clear-btn"
+      (click)="clearFilters.emit()"
+    >
+      Clear Filters
+    </button>
+  </div>
+</div>

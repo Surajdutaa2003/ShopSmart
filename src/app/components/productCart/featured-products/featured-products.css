@@ -1,0 +1,37 @@
+.featured-products-section {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f7fafc;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.featured-products-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #232f3e;
+}
+
+.featured-loading {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.featured-carousel {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  min-width: 100%;
+}
+
+.carousel-track app-card {
+  min-width: 220px;
+  max-width: 240px;
+  flex: 0 0 auto;
+}

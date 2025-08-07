@@ -1,0 +1,39 @@
+@if (hasReviews) {
+  <div class="reviews-section" id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="reviews-summary">
+      <div class="average-rating">
+        <span class="rating-number">{{ averageReview }}</span>
+        <div class="stars">
+          @for (star of [1,2,3,4,5]; track star) {
+            <span class="star" [class.filled]="star <= averageReview">★</span>
+          }
+        </div>
+        <span class="total-reviews">{{ reviewCount }} reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews-container">
+      <div class="reviews-list">
+        @for (review of product.reviews; let index = $index; track index) {
+          <div class="review-item">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <span class="reviewer-name">{{ review.reviewerName }}</span>
+                <span class="review-date">{{ review.date | date:'mediumDate' }}</span>
+                <div class="review-rating">
+                  @for (star of [1,2,3,4,5]; track star) {
+                    <span class="star" [class.filled]="star <= review.rating">★</span>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="review-content">
+              <p>{{ review.comment }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,42 @@
+<header>
+    <div class="header-container">
+        <div class="sub-container1">
+            <div class="brand">
+                <a routerLink="/home">
+                    <h1>ShopSmart</h1>
+                </a>
+            </div>
+
+            <div *ngIf="endpoint === 'products'" class="search-bar">
+                <input type="text" placeholder="Search products..." [value]="searchQuery"
+                    (input)="onSearchQueryChange($event)" />
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            @if(isLoggedIn){
+                <app-user-menu></app-user-menu>
+            } @if (!isLoggedIn) {
+                <button class="login-btn" (click)="navigateToLogin()">Log In</button>
+                <button class="signup-btn" (click)="navigateToSignup()">Sign Up</button>
+            }
+
+            <a routerLink="/home/cart" class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span *ngIf="cartItems > 0" class="cart-count">{{cartItems}}</span>
+            </a>
+        </div>
+    </div>
+</header>

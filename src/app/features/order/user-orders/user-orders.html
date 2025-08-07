@@ -1,0 +1,43 @@
+<div class="orders-page-container">
+    <div class="orders-header">
+        <h1>Your Orders</h1>
+    </div>
+
+    @if (isLoading) {
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading your orders...</p>
+    </div>
+    }
+
+    @if (errorMessage && !isLoading) {
+    <div class="error-message">
+        <p>{{ errorMessage }}</p>
+        <button class="btn-primary" (click)="loadOrderHistory()">Try Again</button>
+    </div>
+    }
+
+    @if (!isLoading && !errorMessage && orders.length === 0) {
+    <div class="no-orders">
+        <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <h3>No orders yet</h3>
+            <p>Looks like you haven't placed any orders yet.</p>
+            <button class="btn-primary" (click)="navigateToProducts()">Start Shopping</button>
+        </div>
+    </div>
+    }
+
+    @if (!isLoading && orders.length > 0) {
+    <div class="orders-list">
+        @for (order of orders; track order) {
+        <app-user-order-card [order]="order" />
+        }
+    </div>
+    }
+</div>

@@ -1,0 +1,115 @@
+<section class="hero-section" @fadeIn>
+  <div class="hero-content">
+    @if(!loading){
+      <div class="hero-text" @slideUp>
+        <h1>Discover Premium Products</h1>
+        <p>Shop from our curated collection of high-quality items with the best deals and fast shipping</p>
+        <button class="cta-button" (click)="navigateToProductsPage()">Shop Now</button>
+      </div>
+    <div class="hero-image" @slideUp>
+      <img src="https://saudewala.in/cdn/shop/collections/Laptop.jpg?v=1732216115&width=1296" alt="Featured Products" />
+    </div>
+    }
+  </div>
+</section>
+
+<section class="categories-section" @fadeIn>
+  <div class="container">
+    <h2 class="section-title" @slideUp>Shop by Category</h2>
+    <div class="categories-grid">
+      @for (category of categories; track category) {
+      <div class="category-card"
+        [ngStyle]="{'background-image': 'url(' + (categoryImages[category] || categoryImages['default']) + ')'}"
+        (click)="onCategorySelect(category)" @slideUp>
+        <div class="category-overlay">
+          <span class="category-icon">
+            <i class="fas fa-tag"></i>
+          </span>
+          <h3>{{ category | titlecase }}</h3>
+          <p>Explore {{ category }}</p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="featured-products-section" @fadeIn>
+  <div class="container">
+    <div class="section-header" @slideUp>
+      <h2 class="section-title">Featured Products</h2>
+      <button class="view-all-btn" (click)="navigateToProductsPage()">View All Products</button>
+    </div>
+
+    @if (loading) {
+    <div class="loading-container" @fadeIn>
+      <div class="spinner"></div>
+      <p>Loading products...</p>
+    </div>
+    }
+
+    @if (error) {
+    <div class="error-container" @fadeIn>
+      <p>{{ error }}</p>
+      <button class="retry-btn" (click)="loadProducts()">Retry</button>
+    </div>
+    }
+
+    @if (!loading && !error) {
+    <div class="products-grid">
+      @for (product of featuredProducts; track product.id) {
+      <app-card [product]="product" (click)="navigateToProductDetails(product.id)" @slideUp>
+      </app-card>
+      }
+    </div>
+    }
+  </div>
+</section>
+
+<section class="features-section" @fadeIn>
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card" @slideUp>
+        <div class="feature-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3>Free Shipping</h3>
+        <p>Free shipping on orders over $50</p>
+      </div>
+      <div class="feature-card" @slideUp>
+        <div class="feature-icon">
+          <i class="fas fa-undo"></i>
+        </div>
+        <h3>Easy Returns</h3>
+        <p>30-day return policy</p>
+      </div>
+      <div class="feature-card" @slideUp>
+        <div class="feature-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>24/7 Support</h3>
+        <p>Customer support available anytime</p>
+      </div>
+      <div class="feature-card" @slideUp>
+        <div class="feature-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Secure Payment</h3>
+        <p>100% secure payment processing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-section" @fadeIn>
+  <div class="container">
+    <div class="newsletter-content" @slideUp>
+      <h2>Stay Updated</h2>
+      <p>Subscribe to our newsletter for the latest deals and product updates</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" />
+        <button class="subscribe-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>

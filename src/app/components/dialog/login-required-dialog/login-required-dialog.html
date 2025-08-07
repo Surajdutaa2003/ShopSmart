@@ -1,0 +1,21 @@
+<div class="login-dialog">
+  <h2 class="dialog-title">Login Required</h2>
+  
+  <div class="dialog-content">
+    <p>You need to be logged in to proceed to checkout.</p>
+  </div>
+  
+  <div class="dialog-actions">
+    <button class="btn btn-secondary" (click)="dialogRef.close()">
+      Continue Shopping
+    </button>
+    <div class="action-buttons">
+      <button class="btn btn-outline" (click)="dialogRef.close('signup')">
+        Sign Up
+      </button>
+      <button class="btn btn-primary" (click)="dialogRef.close('login')">
+        Login
+      </button>
+    </div>
+  </div>
+</div>

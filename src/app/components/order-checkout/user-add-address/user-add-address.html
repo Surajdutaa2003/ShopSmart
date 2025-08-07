@@ -1,0 +1,36 @@
+<div class="address-form">
+    @if (addressFormError) {
+    <div class="error-message">{{ addressFormError }}</div>
+    }
+
+    <div class="form-grid">
+        <div class="form-row">
+            <label>House/Flat No*</label>
+            <input type="text" [(ngModel)]="newAddress.houseNo">
+        </div>
+        <div class="form-row">
+            <label>Locality</label>
+            <input type="text" [(ngModel)]="newAddress.locality">
+        </div>
+        <div class="form-row">
+            <label>City*</label>
+            <input type="text" [(ngModel)]="newAddress.city">
+        </div>
+        <div class="form-row">
+            <label>State*</label>
+            <input type="text" [(ngModel)]="newAddress.state">
+        </div>
+        <div class="form-row full-width">
+            <label>Country*</label>
+            <input type="text" [(ngModel)]="newAddress.country">
+        </div>
+    </div>
+
+    @if (addressSaveError) {
+    <div class="error-message">{{ addressSaveError }}</div>
+    }
+
+    <div class="form-buttons">
+        <button (click)="onClose.emit()">Cancel</button>
+        <button (click)="addressSave.emit()">Save</button>
+    </div>

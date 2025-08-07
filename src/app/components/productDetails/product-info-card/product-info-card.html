@@ -1,0 +1,29 @@
+<app-wrapper-product-info-card>
+  <div product-details>
+    <h3>Product Details</h3>
+    <p><strong>Brand:</strong> {{ product.brand || 'Generic Brand'}}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    <p><strong>Weight:</strong> {{ product.weight }}g</p>
+    <p><strong>Dimensions:</strong> {{ formattedDimensions }}</p>
+    <p><strong>Warranty:</strong> {{ product.warrantyInformation }}</p>
+    <p><strong>Minimum Order Quantity:</strong> {{ product.minimumOrderQuantity || 1 }}</p>
+    @if (product.tags.length) {
+      <div class="tags">
+        <strong class="tags-title">Tags:</strong>
+        @for (tag of product.tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+    }
+  </div>
+
+  <div shipping-info>
+    <h3>Shipping Information</h3>
+    <p>{{ product.shippingInformation }}</p>
+  </div>
+
+  <div return-policy>
+    <h3>Return Policy</h3>
+    <p>{{ product.returnPolicy || 'Standard return policy applies.' }}</p>
+  </div>
+</app-wrapper-product-info-card>

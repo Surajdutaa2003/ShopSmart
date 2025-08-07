@@ -1,0 +1,208 @@
+.new-address-form {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-gray-200);
+}
+
+.new-address-form h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.form-row {
+  margin-bottom: 0.5rem;
+}
+
+.form-row.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.form-row input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-sm);
+  transition: border-color 0.2s;
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.1);
+}
+
+.address-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-add-address {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--color-white);
+  border: 1px dashed var(--color-gray-400);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  color: var(--color-gray-700);
+  transition: all 0.2s ease;
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-add-address::before {
+  content: "+";
+  margin-right: 6px;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.btn-add-address:hover {
+  border-color: var(--color-accent);
+  background-color: rgba(var(--color-accent-rgb), 0.05);
+  color: var(--color-accent);
+}
+
+.btn-add-address:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.no-addresses {
+  margin-bottom: 1rem;
+  color: var(--color-gray-600);
+  padding: 1.5rem;
+  background-color: var(--color-gray-50);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  border: 1px dashed var(--color-gray-300);
+}
+
+/* Form improvements */
+.address-form {
+  margin-top: 1.5rem;
+  padding: 1.75rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-gray-50);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-row {
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.form-row.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-800);
+}
+
+.form-row input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s;
+  background-color: var(--color-white);
+  font-size: var(--font-size-md);
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.15);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-buttons button {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.form-buttons button:first-child {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-800);
+}
+
+.form-buttons button:first-child:hover {
+  background-color: var(--color-gray-300);
+  transform: translateY(-2px);
+}
+
+.form-buttons button:last-child {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: 0 2px 6px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.form-buttons button:last-child:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.3);
+}
+
+/* Error message styling */
+.error-message {
+  color: #d32f2f;
+  background-color: rgba(211, 47, 47, 0.08);
+  border-radius: var(--border-radius-sm);
+  padding: 0.875rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--font-size-sm);
+  border-left: 3px solid #d32f2f;
+  display: flex;
+  align-items: center;
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}

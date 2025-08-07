@@ -1,0 +1,3 @@
+<div class="payment-method" [class.selected]="selectedPayment === method.id" (click)="onPaymentMethodSelect.emit()">
+    <span>{{ method.name }}</span>
+</div>

@@ -1,0 +1,91 @@
+<div class="order-placed-container">
+  <div class="confirmation-box">
+    <div class="order-header">
+      <div class="checkmark">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="white" />
+        </svg>
+      </div>
+      <h1>Order Placed Successfully!</h1>
+      <p>Your order has been confirmed. A confirmation email has been sent to your inbox.</p>
+    </div>
+
+    <div class="order-details">
+      <div class="detail-row">
+        <div class="detail-col">
+          <h3>Order Number</h3>
+          <p>{{ orderNumber }}</p>
+        </div>
+        <div class="detail-col">
+          <h3>Order Date</h3>
+          <p>{{ orderDate }}</p>
+        </div>
+        <div class="detail-col">
+          <h3>Estimated Delivery</h3>
+          <p>{{ estimatedDelivery }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-payment-section">
+    <div class="shipping-address">
+      <h3>Shipping Address</h3>
+      <p>{{ customerName }}</p>
+      <p>{{ customerAddress }}</p>
+      <p>{{ customerCity }}, {{ customerState }} {{ customerCountry }}</p>
+    </div>
+
+    <div class="payment-method">
+      <h3>Payment Method</h3>
+      <p>{{ paymentMethod }}</p>
+      <p class="billing-address">Billing address same as shipping address</p>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    <h2>Order Details</h2>
+
+    <div class="order-items">
+      @for (item of orderItems; track item) {
+        <div class="order-item">
+          <div class="item-image">
+            <img [src]="item.product.thumbnail" [alt]="item.product.title">
+          </div>
+          <div class="item-details">
+            <h3>{{ item.product.title }}</h3>
+            <p class="item-brand">{{ item.product.brand }}</p>
+            <div class="item-price-row">
+              <p class="item-price">${{ item.product.price | number: '1.2-2' }}</p>
+              <p class="item-quantity">Qty: {{ item.quantity }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="order-totals">
+      <div class="total-row">
+        <span>Items ({{ orderItems.length }}):</span>
+        <span>${{ orderTotal | number: '1.2-2' }}</span>
+      </div>
+      <div class="total-row">
+        <span>Shipping & Handling:</span>
+        <span>$0.00</span>
+      </div>
+      <div class="total-row">
+        <span>Tax:</span>
+        <span>${{ orderTotal * 0.05 | number: '1.2-2' }}</span>
+      </div>
+      <div class="total-row order-total">
+        <span>Order Total:</span>
+        <span>${{ orderTotal + (orderTotal * 0.05) | number: '1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="continue-shopping" (click)="continueShopping()">Continue Shopping</button>
+    <button class="view-orders" (click)="viewOrders()">View or Track Orders</button>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<!-- PRODUCT DETAILS BLOCK -->
+@if (!isLoading) {
+
+  <div class="product-details-container">
+
+    <!-- Back Button -->
+    <button class="back-btn" (click)="goBack()">
+      ← Back
+    </button>
+
+    <div class="product-details-wrapper">
+
+      <!-- Left Column - Product Images -->
+      <div class="product-images-section">
+        <div class="main-image-container">
+          <img [src]="selectedImage || product.thumbnail || product.images?.[0]" class="main-product-image" />
+        </div>
+        @if (hasGallery) {
+          <div class="thumbnail-gallery">
+            @for (image of product.images; track image) {
+              <div class="thumbnail-container" 
+                   (click)="selectedImage = image"
+                   [class.selected]="selectedImage === image">
+                <img [src]="image" [alt]="product.title" class="thumbnail-image" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Right Column - Product Information -->
+      <div class="product-info-section">
+        <div class="product-header">
+          <h1 class="product-title">{{ product.title }}</h1>
+          <div class="product-brand">Brand : {{ product.brand || 'Generic Brand'}}</div>
+          <div class="rating-section">
+            <div class="stars">
+              @for (star of [1,2,3,4,5]; track star) {
+                <span class="star" [class.filled]="star <= averageReview">★</span>
+              }
+            </div>
+            <span class="rating-text">{{ averageReview }} out of 5</span>
+            <a href="#reviews" class="review-count">({{ reviewCount }} customer reviews)</a>
+          </div>
+        </div>
+
+        <div class="pricing-section">
+          <div class="price-container">
+            <span class="discount-price">${{ discountPrice }}</span>
+            @if (product.discountPercentage > 0) {
+              <span class="original-price">${{ product.price }}</span>
+              <span class="discount-badge">
+                {{ product.discountPercentage }}% off
+              </span>
+            }
+          </div>
+          <div class="availability" 
+               [class.in-stock]="product.stock > 0"
+               [class.out-of-stock]="product.stock === 0">
+            {{ product.availabilityStatus || (product.stock > 0 ? 'In Stock' : 'Out of Stock') }}
+          </div>
+        </div>
+
+        <div class="product-description">
+          <h3>About this item</h3>
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-details-grid">
+          <div class="detail-item">
+            <strong>SKU:</strong> {{ product.sku }}
+          </div>
+          <div class="detail-item">
+            <strong>Weight:</strong> {{ product.weight }}g
+          </div>
+          <div class="detail-item">
+            <strong>Dimensions:</strong> {{ formattedDimensions }}
+          </div>
+          <div class="detail-item">
+            <strong>Category:</strong> {{ product.category }}
+          </div>
+        </div>
+
+        <div class="purchase-section">
+
+          @if (!inCart) {
+            <button
+              class="add-to-cart-btn"
+              [disabled]="product.stock === 0"
+              (click)="addToCart()">
+              <img src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v1.png" alt="Cart" width="16" height="16" />
+              Add to Cart
+            </button>
+            <button class="buy-now-btn" routerLink="/home/cart">
+              Go To Cart
+            </button>
+          } @else {
+            <div class="cart-quantity-indicator">
+              <label>Quantity:</label>
+              @if (quantity > 1) {
+                <button
+                  class="decrement-btn"
+                  (click)="updateCartQuantity(quantity - 1)"
+                  [disabled]="product.stock === 0"
+                >-</button>
+              }
+              <span class="cart-quantity">{{ quantity }}</span>
+              <button
+                class="increment-btn"
+                (click)="updateCartQuantity(quantity + 1)"
+                [disabled]="product.stock === 0 || quantity >= product.stock"
+              >+</button>
+              <button
+                class="remove-cart-btn"
+                (click)="removeFromCart()"
+                [disabled]="product.stock === 0"
+              >Remove</button>
+            </div>
+            <button class="buy-now-btn" routerLink="/home/cart">
+              View Cart
+            </button>
+          }
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Information Tabs - Pass product data to child -->
+    <app-product-info-card [product]="product"></app-product-info-card>
+
+    <!-- Reviews Section - Pass product data to child -->
+    <app-customer-review [product]="product"></app-customer-review>
+
+  </div>
+
+} @else {
+
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading product details...</p>
+  </div>
+}

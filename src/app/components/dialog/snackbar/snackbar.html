@@ -1,0 +1,36 @@
+<div class="product-snackbar">
+  <div class="snackbar-icon" *ngIf="data.message.includes('Added')">
+    <mat-icon color="primary">check_circle</mat-icon>
+  </div>
+  
+  <div class="snackbar-content">
+    <div class="product-info">
+      <img 
+        *ngIf="data.product.thumbnail" 
+        [src]="data.product.thumbnail" 
+        [alt]="data.product.title"
+        class="product-thumbnail">
+      
+      <div class="product-details">
+        <div class="product-title">{{ data.product.title }}</div>
+        <div class="product-price">${{ data.product.price | number:'1.2-2' }}</div>
+      </div>
+    </div>
+    
+    <div class="message">{{ data.message }}</div>
+  </div>
+  
+  <div class="snackbar-actions">
+    <a *ngIf="data.message.includes('Added')" 
+       routerLink="/home/cart" 
+       class="view-cart-btn" 
+       mat-button 
+       color="accent">
+      View Cart
+    </a>
+    
+    <button mat-icon-button (click)="closeSnackbar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

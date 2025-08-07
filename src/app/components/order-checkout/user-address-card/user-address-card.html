@@ -1,0 +1,13 @@
+<div 
+                class="address-item" 
+                [class.selected]="selectedAddress === address"
+                (click)="addressSelect.emit()">
+                <div class="address-content">
+                  <p>{{ address?.houseNo }}</p>
+                  @if (address?.locality) {
+                    <p>{{ address?.locality }}</p>
+                  }
+                  <p>{{ address?.city }}, {{ address?.state }}</p>
+                  <p>{{ address?.country }}</p>
+                </div>
+              </div>

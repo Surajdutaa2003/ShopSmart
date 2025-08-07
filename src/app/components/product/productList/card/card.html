@@ -1,0 +1,49 @@
+<div class="product-card" *ngIf="product">
+  <div class="badge-container">
+    <span *ngIf="product.discountPercentage >= 50" class="badge sale">50% Off</span>
+  </div>
+  <div class="image-container" (click)="clickImage()">
+    <img [src]="product.thumbnail" [alt]="product.title" width="160" height="160">
+  </div>
+  <a [routerLink]="['/home/products', product.id]">
+    <h3 class="title">{{ product.title | slice:0:40 }}{{ product.title.length > 40 ? '...' : '' }}</h3>
+  </a>
+  <p class="vendor">{{ product.brand || 'Generic Brand' }}</p>
+  <div class="price-row">
+    <span class="price">${{ product.price | number:'1.2-2' }}</span>
+    <span class="old-price" *ngIf="product.discountPercentage">{{ '$' + (product.price / (1 - product.discountPercentage / 100) | number:'1.2-2') }}</span>
+  </div>
+  <div class="rating-row">
+    <span class="rating">{{ product.rating | number:'1.1-1' }}</span>
+    <span class="star" 
+          [ngClass]="{
+            'filled': product.rating >= i,
+            'half-filled': product.rating >= i - 0.5 && product.rating < i
+          }" 
+          *ngFor="let i of [1, 2, 3, 4, 5]">★</span>
+    <span class="reviews">({{ product.reviews?.length || 0 }})</span>
+  </div>
+  <div class="action-row">
+    <div *ngIf="cartQuantity > 0" class="quantity-controls">
+      <button 
+        class="remove-btn" 
+        *ngIf="cartQuantity === 1" 
+        (click)="removeFromCart()"
+      >
+        Remove
+      </button>
+      <button 
+        class="decrease-btn" 
+        *ngIf="cartQuantity > 1" 
+        (click)="updateQuantity('dec')"
+      >
+        -
+      </button>
+      <span class="quantity">{{ cartQuantity }}</span>
+      <button class="increase-btn" (click)="updateQuantity('inc')">+</button>
+    </div>
+    <button *ngIf="cartQuantity === 0" class="add-cart-btn" (click)="addProductToCart()">
+      Add to Cart
+    </button>
+  </div>
+</div>

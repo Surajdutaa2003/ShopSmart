@@ -1,0 +1,107 @@
+<!-- Mobile Filter Toggle Button -->
+<div class="mobile-filter-toggle">
+  <button 
+    class="hamburger-btn" 
+    (click)="toggleFilters()"
+    [class.active]="isFiltersOpen()"
+  >
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+  <span class="filter-text">Filters</span>
+</div>
+
+<!-- Mobile Filter Overlay -->
+<div 
+  class="mobile-filter-overlay"
+  [class.active]="isFiltersOpen()"
+  (click)="closeFilters()"
+></div>
+
+<!-- Category Bar -->
+<div class="category-bar sleek-category-bar">
+  <button 
+    class="category-btn" 
+    [class.active]="selectedCategory() === ''"
+    (click)="selectedCategory.set(''); onCategoryChange()"
+  >
+    All
+  </button>
+  @for (category of categories.slice(0, categories.length - 6); track category) {
+    <button 
+      class="category-btn"
+      [class.active]="selectedCategory() === category"
+      (click)="selectedCategory.set(category); onCategoryChange()"
+    >
+      {{ category.charAt(0).toUpperCase() + category.slice(1) }}
+    </button>
+  }
+</div>
+
+<!-- Filters Container -->
+<div class="filters-container" [class.mobile-open]="isFiltersOpen()">
+  <!-- Close button for mobile -->
+  <button class="mobile-close-btn" (click)="closeFilters()">
+    <span>×</span>
+  </button>
+  
+  <div class="filters">
+    <div class="filter-item">
+      <span class="filter-label">Price:</span>
+      <input
+        id="price-filter"
+        type="number"
+        [(ngModel)]="maxPrice"
+        (ngModelChange)="onPriceChange()"
+        placeholder="Max price"
+        min="0"
+        step="0.01"
+      />
+    </div>
+    
+    <div class="filter-item rating-filter">
+      <span class="filter-label">Min Rating:</span>
+      <div class="compact-rating">
+        <input
+          id="rating-filter"
+          type="range"
+          [(ngModel)]="minRating"
+          (ngModelChange)="onRatingChange()"
+          min="0"
+          max="5"
+          step="0.5"
+          class="rating-slider"
+        />
+        <div class="rating-value">{{ minRating() }}</div>
+        <div class="compact-stars">
+          @for (star of [1,2,3,4,5]; track i; let i = $index) {
+            <span class="star" [class.filled]="i < minRating()">★</span>
+          }
+        </div>
+      </div>
+    </div>
+   <div class="filter-item">
+  <span class="filter-label">Sort By:</span>
+  <select id="sort-by" [(ngModel)]="sortBy" (ngModelChange)="onSortByChange()">
+    <option value="None" placeholder="None" >None</option>
+    <option value="title">Title</option>
+    <option value="price">Price</option>
+    <option value="rating">Rating</option>
+    <option value="category">Category</option>
+  </select>
+</div>
+    
+    <div class="filter-item">
+      <span class="filter-label">Order:</span>
+      <select placeholder="Order" id="sort-order" [(ngModel)]="order" (ngModelChange)="onSortOrderChange()">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+    
+    <button type="button" class="clear-filters-btn" (click)="clearFilters()">
+      Clear Filters
+    </button>
+  </div>
+</div>

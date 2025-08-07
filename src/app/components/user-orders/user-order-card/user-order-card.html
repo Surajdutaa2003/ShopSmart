@@ -1,0 +1,43 @@
+      <div class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <div class="info-group">
+                <span class="label">Order Placed:</span>
+                <span class="value">{{ formatDate(order.orderDate) }}</span>
+              </div>
+              <div class="info-group">
+                <span class="label">Payment Method:</span>
+                <span class="value">{{ formatPaymentMethod(order.paymentMethod) }}</span>
+              </div>
+              <div class="info-group">
+                <span class="label">Total:</span>
+                <span class="value price">${{ calculateOrderTotal(order) | number:'1.2-2' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-items">
+            @for (item of order.products; track item) {
+              <div class="order-item">
+                <div class="item-image">
+                  <img [src]="item.product.thumbnail" [alt]="item.product.title">
+                </div>
+                <div class="item-details">
+                  <h3 class="item-title">{{ item.product.title }}</h3>
+                  <p class="item-brand">{{ item.product.brand }}</p>
+                  <div class="item-meta">
+                    <span class="item-price">${{ item.product.price | number:'1.2-2' }}</span>
+                    <span class="item-quantity">Qty: {{ item.quantity }}</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="order-address">
+            <h4>Shipping Address:</h4>
+            <p>{{ order.address.houseNo }}{{ order.address.locality ? ', ' + order.address.locality : '' }}</p>
+            <p>{{ order.address.city }}, {{ order.address.state }}</p>
+            <p>{{ order.address.country }}</p>
+          </div>
+        </div>
